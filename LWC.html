@@ -136,7 +136,7 @@
     </style>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css"> -->
     <!-- script for css modified for north to be visible -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ol.css') }}"> 
+    <link rel="stylesheet" href="static/css/ol.css"> 
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
     <script src="https://unpkg.com/ol-layerswitcher@3.5.0"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -167,16 +167,16 @@
             
         </div>
         <div style="float:right;width:48%;margin-right:6px;border-bottom: 1px solid  rgba(185, 188, 190, 0.973);">
-            <img src="{{ url_for('static', filename='images/AI_Lab_Logo.PNG') }}" id="logo">
+            <img src="static/images/AI_Lab_Logo.PNG" id="logo">
             <ul id="nav" style="float:right;margin:10px;padding:10px" >
-                <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('analysis2') }}">LWC Analysis</a>  </li>
-                <li><a href="{{ url_for('model') }}">HyperSpectral Cube</a> </li>
+                <li><a href="index.html">Home</a></li>
+                
+                <li><a href="#">HyperSpectral Cube</a> </li>
                
-                <li><a href="{{ url_for('LWC') }}"></br>LWC</a> </li>
-                <li><a href="{{ url_for('LAI1') }}">LAI 1</a>  </li>
-                <li><a href="{{ url_for('LAI2') }}">LAI 2</a> </li>
-                <li><a href="{{ url_for('Plot_Info') }}">Plot Info</a></li>
+                <li><a href="LWC.html"></br>LWC</a> </li>
+                <li><a href="LAI_plot_view_RGB.html">LAI 1</a>  </li>
+                <li><a href="LAI_vis_RGB.html">LAI 2</a> </li>
+                <li><a href="Plot_info_v2.html">Plot Info</a></li>
             </ul>
         </div>
         <div id="map-matrix" class="mapbox2">
@@ -194,7 +194,7 @@
                 <!-- <div class="info-text"> -->
                     <!-- style="margin:10px;float:right;width:100%;" -->
                     <p style="font-size: 10px;margin-bottom: 6px;">Legend: LWC (x100% water content)</p>
-                    <img id="leg-img" src="{{ url_for('static',filename='images/legend_lwi.png')}}" alt="legend">
+                    <img id="leg-img" src="static/images/legend_lwi.png" alt="legend">
 
                 <!-- </div> -->
             </div>
@@ -277,7 +277,7 @@
                                 attributions: '',
                                 minZoom: 20,
                                 maxZoom: 24,
-                                url: "{{ url_for('static',filename='25janC/')}}"+'{z}/{x}/{-y}.png',
+                                url: "static/25janC/"+'{z}/{x}/{-y}.png',
                                 tileSize: [256, 256]
                             })
                         })
@@ -290,7 +290,7 @@
                                 attributions: '',
                                 minZoom: 20,
                                 maxZoom: 24,
-                                url: "{{ url_for('static',filename='21novC/')}}"+'{z}/{x}/{-y}.png',
+                                url: "static/21novC/"+'{z}/{x}/{-y}.png',
                                 tileSize: [256, 256]
                             })
                         })
@@ -303,7 +303,7 @@
                                 attributions: '',
                                 minZoom: 20,
                                 maxZoom: 24,
-                                url: "{{ url_for('static',filename='7janC/')}}"+'{z}/{x}/{-y}.png',
+                                url: "static/7janC/"+'{z}/{x}/{-y}.png',
                                 tileSize: [256, 256]
                             })
                         })
@@ -315,7 +315,7 @@
                                 attributions: '',
                                 minZoom: 20,
                                 maxZoom: 24,
-                                url: "{{ url_for('static',filename='12jdecC/')}}"+'{z}/{x}/{-y}.png',
+                                url: "static/12jdecC/"+'{z}/{x}/{-y}.png',
                                 tileSize: [256, 256]
                             })
                         })
@@ -329,7 +329,7 @@
                                 attributions: '',
                                 minZoom: 18,
                                 maxZoom: 24,
-                                url: "{{ url_for('static',filename='19decC/')}}"+'{z}/{x}/{-y}.png',
+                                url: "static/19decC/"+'{z}/{x}/{-y}.png',
                                 tileSize: [256, 256]
                             })
                         })
@@ -342,7 +342,7 @@
                                 attributions: '',
                                 minZoom: 18,
                                 maxZoom: 24,
-                                url:  "{{ url_for('static',filename='field/')}}"+'{z}/{x}/{-y}.png',
+                                url:  "static/field/"+'{z}/{x}/{-y}.png',
                                 tileSize: [256, 256]
                             })
                         })
@@ -354,7 +354,7 @@
                                 attributions: '',
                                 minZoom: 18,
                                 maxZoom: 24,
-                                url:  "{{ url_for('static',filename='camp9_lwi/')}}"+'{z}/{x}/{-y}.png',
+                                url:  "static/camp9_lwi/"+'{z}/{x}/{-y}.png',
                                 tileSize: [256, 256]
                             })
                         })
@@ -459,7 +459,7 @@
                                 attributions: '',
                                 minZoom: 18,
                                 maxZoom: 24,
-                                url:  "{{ url_for('static',filename='field/')}}"+'{z}/{x}/{-y}.png',
+                                url:  "static/field/"+'{z}/{x}/{-y}.png',
                                 tileSize: [256, 256]
                             })
                         }),new ol.layer.Tile({
@@ -470,7 +470,7 @@
                                 attributions: '',
                                 minZoom: 18,
                                 maxZoom: 24,
-                                url:  "{{ url_for('static',filename='cmap9_lwi/')}}"+'{z}/{x}/{-y}.png',
+                                url:  "static/cmap9_lwi/"+'{z}/{x}/{-y}.png',
                                 tileSize: [256, 256]
                             })
                         })]
