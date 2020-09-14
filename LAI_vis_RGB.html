@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html >
+    <head>
+    <title>LAI-1</title>
+    <meta http-equiv='imagetoolbar' content='no'/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">    <style type="text/css"> v\:* {behavior:url(#default#VML);}
+        html, body { overflow: hidden; padding: 0; height: 100%; width: 100%; font-family: 'Open Sans', sans-serif; }
+        body { margin: 10px; background: #fff; }
+        /* h1 { margin: 0; padding: 6px; border:0; font-size: 20pt; } */
+        #header { height: 43px; padding: 0; background-color: #eee; border: 1px solid #888; }
+        #subheader { height: 12px; text-align: right; font-size: 10px; color: #555;}
+        /* #map { height: 90%; border: 1px solid #888; }
+         */
+         #mapbox{ float:left; width:50%; height: 95%;}
+         #mapbox2{ float:left; width:48%; height: 95%;}
+         #map {  width:95%; height: 100%;border: 5px solid #74a9cf;} 
+         #display #dispaly-1
+                {
+                    position: absolute; width:90%; height: 100%;margin: 10px;padding-right: 10px;
+
+                }
+                
+        .textbox
+        {
+            width:100%;
+            float:left;
+            margin-right:5px;
+            padding:10px;
+            /* border: 1px solid red;  */
+            
+            
+        }
+        #op-control{
+                width: 90px;
+                margin:10px;
+                margin-left: 10px;
+            }
+        #reset,#lai_onn,#background_onn{
+                margin: 10px;
+                margin-left: 0px;
+                font-family: 'Open Sans', sans-serif;
+                border: 4px solid  #74a9cf;
+                background-color: white; 
+                border-radius: 12px;
+
+            }
+            
+        .slid{
+                width: 350px;
+                margin: 20px;
+                margin-left:10px;
+                
+            }
+        ul#menu1 li{
+            display: inline;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10px;
+            padding: 6px;  /*this increases the distamce between the li*/
+        }
+        ul#ref-line li{
+            display: inline;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10px;
+            padding: 25px;  /*this increases the distamce between the li*/
+        }
+        #menu1 {
+           
+            padding:0;
+            margin:0;
+        }
+        #ref-line {
+            padding:0;
+            margin:0;
+        }
+        #logo {
+           
+           width:10%;
+           height:auto;
+           margin:10px;
+          
+        }
+        #content-title
+        {
+            padding:5px;
+            margin:5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 30px;
+            /* border: 1px solid red;  */
+           
+            
+            /* padding:5px; */
+
+        }
+        ul#nav li{
+            display: inline;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
+            padding: 8px;
+            /* float: right; */
+            /* border: 4px solid  #74a9cf; */
+        }
+        ul#nav li a{
+            color:black;
+            font-family: 'Open Sans', sans-serif;
+            text-decoration: none;
+        }
+        ul#nav li a:hover
+        {
+            color:#1d8ddd;
+        }
+        .timeline{
+            font-weight: 900;
+            color:#1d8ddd;
+            font-size:12px;
+            }
+        #logo {
+           width:26%;
+           height:auto;
+           
+          
+        }
+        
+        #legend
+        {
+            width:30%;
+            
+            height:auto;
+            /* border: 1px solid red; */
+            float:right;
+            /* border: 1px solid red;  */
+            
+        }
+        #leg-img
+        {
+            width:90px;
+            height:auto;
+        }
+        
+
+
+    </style>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css"> -->
+    <!-- script for css modified for north to be visible -->
+    <link rel="stylesheet" href="static/css/ol.css"> 
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
+    <script src="https://unpkg.com/ol-layerswitcher@3.5.0"></script>
+     
+
+   
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ol-layerswitcher@3.5.0/src/ol-layerswitcher.css" />
+</head>
+<body>
+    
+    <div id="mapbox"><div id="map" class="map"></div></div>
+        
+    
+    
+
+   
+    <!-- <div id="mouse-position"></div> -->
+    <div id="mapbox2">
+        <div style="float:right;width:100%;margin-right:6px;margin-bottom:10px;border-bottom: 1px solid  rgba(185, 188, 190, 0.973);">
+            <img src="static/images/AI_Lab_Logo.PNG" id="logo">
+            <ul id="nav" style="float:right;margin:10px;padding:10px" >
+                <li><a href= "index.html">Home</a></li>
+             
+                <li><a href="#">HyperSpectral Cube</a> </li>
+               
+
+                <li><a href= "LWC.html"></br>LWC</a> </li>
+                <li><a href= "LAI_vis_RGB.html">LAI 1</a>  </li>
+                <li><a href= "LAI_plot_view_RGB.html">LAI 2</a> </li>
+                <li><a href= "Plot_info_v2.html">Plot Info</a></li>
+                
+            </ul>
+        </div>
+        <div class="textbox">
+            <p id="content-title"> Leaf Area Visualisation</p>
+            <!-- 21st Nov: Early vegetative
+            12th Dec: Late vegetative
+            19th Dec: Tasselling
+            10th Jan: Silking
+            25th Jan: Dough -->
+            <div id="legend" >
+                <p style="font-size: 10px;margin-bottom: 6px;">Legend: Leaf Area Index</p>
+                <img id="leg-img" src="static/images/legend.PNG" alt="legend">
+            </div> 
+            <div id="slider" class="slid"></div> 
+            
+            <p style="margin-left:2px;font:sans-serif;font-size:10px">|_______________|______________|_______________|_______________|______________|</p>
+
+            <ul id="menu1" >
+                <li> RGB </li>
+                <!-- <li>  | </li> -->
+                <li>Early Vegetative</li>
+                <!-- <li> | </li> -->
+                <li> Late Vegetative</li>
+                <!-- <li>  | </li> -->
+                <li> Tasselling </li>
+                <!-- <li> | </li> -->
+                <li> Silking </li>
+                <!-- <li> | </li> -->
+                <li> Dough </li>
+            </ul>  
+            
+
+            <div id="slider2" class="slid" ></div>
+            
+            <div id="op-control"></div>
+            <button type="button" id="reset" class="btn btn-success">Reset</button>
+            <button type="button" id="lai_onn" class="btn btn-success">LAI map</button>
+            <button type="button" id="background_onn" class="btn btn-success">Field</button>
+            <!-- <button type="button" id="reset" class="btn btn-success">Reset</button> -->
+            <div id="display-1">
+            
+                <p>
+                <br/>
+                Move the smaller slider for changing opacity of the current stage.<br/>
+                Reset will reset opacity changes for all stages.
+                </p>
+        
+                
+            </div>
+            <div id="display" >
+                <br/>
+                Move slider for observing stages
+            </div> 
+        </div>
+    </div>
+
+    
+    
+    <!-- <div id="slider-id"><div class="ui-slider-handle"></div> -->
+    <script type="text/javascript">
+        // var mousePositionControl = new ol.control.MousePosition({
+        //     className: 'custom-mouse-position',
+        //     target: document.getElementById('mouse-position'),
+        //     undefinedHTML: '&nbsp;'
+        // });
+        osm=new ol.layer.Tile({
+                                title: 'OpenStreetMap',
+                                type: 'base',
+                                visible: false,
+                                source: new ol.source.OSM()
+                            })
+
+        streets=new ol.layer.Tile({
+                            title:"Streets",
+                            type:'base',
+                            visible:false,
+                            source: new ol.source.XYZ({
+                                url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGV2MjAwMCIsImEiOiJja2Nwczk5cjUweHp4MnFzNnc0cXpuc3Y2In0.3lT6qtv5vpyMG4HMhk-FPg'
+                                })
+                            })
+
+
+          sat= new ol.layer.Tile({
+                            title:"Satellite",
+                            type:'base',
+                            // visible:false,
+                            source: new ol.source.XYZ({
+                                url: 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGV2MjAwMCIsImEiOiJja2Nwczk5cjUweHp4MnFzNnc0cXpuc3Y2In0.3lT6qtv5vpyMG4HMhk-FPg'
+                                })
+          })
+          var field=new ol.layer.Tile({
+                            title: 'field',
+                            // opacity: 0.7,
+                            // visible:false,
+                            extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 18,
+                                maxZoom: 24,
+                                url: "static/field/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+
+
+        var base_lyr=new ol.layer.Group({
+                        title: 'Base maps',
+                        layers: [osm,streets,sat,field]
+                })
+
+        var lyr25jan= new ol.layer.Tile({
+                            title: '25Jan',
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 20,
+                                maxZoom: 24,
+                                url: "static/25janC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var lyr21nov= new ol.layer.Tile({
+                            title: '21Nov',
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 20,
+                                maxZoom: 24,
+                                url: "static/21novC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var lyr7jan= new ol.layer.Tile({
+                            title: '7jan',
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 20,
+                                maxZoom: 24,
+                                url: "static/7janC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var lyr12dec=new ol.layer.Tile({
+                            title: '12dec',
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 20,
+                                maxZoom: 24,
+                                url: "static/12decC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var lyr19dec=new ol.layer.Tile({
+                            title: '19dec',
+                            // opacity: 0.7,
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.328329, 1958591.866426,8727337.310967, 1958630.721182],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 18,
+                                maxZoom: 24,
+                                url: "static/19decC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+                        
+        var field7jan=new ol.layer.Tile({
+                            title: 'field 7jan',
+                            // opacity: 0.7,
+                            visible:false,
+                            extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 18,
+                                maxZoom: 24,
+                                url: "static/7_jan_RGB/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+
+        var field12dec=new ol.layer.Tile({
+                            title: 'field 12 dec',
+                            // opacity: 0.7,
+                            visible:false,
+                            extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 18,
+                                maxZoom: 24,
+                                url:  "static/12_dec_RGB/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var field19dec=new ol.layer.Tile({
+                            title: 'field 19 dec',
+                            // opacity: 0.7,
+                            visible:false,
+                            extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 18,
+                                maxZoom: 24,
+                                url:  "static/22_dec_RGB2/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var field25jan=new ol.layer.Tile({
+                            title: 'field 25 jan',
+                            // opacity: 0.7,
+                            visible:false,
+                            extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 18,
+                                maxZoom: 24,
+                                url:  "static/25_jan_RGB/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+
+        var field21nov=new ol.layer.Tile({
+                            title: 'field 21 nov',
+                            // opacity: 0.7,
+                            visible:false,
+                            extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 18,
+                                maxZoom: 24,
+                                url:  "static/21_nov_RGB/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+         
+        var jan7=new ol.layer.Group({
+                    title: 'Overlay',
+                    layers: [field7jan,lyr7jan],
+                    
+                })
+        var jan25=new ol.layer.Group({
+                    title: 'Overlay',
+                    layers: [field25jan,lyr25jan],
+                    
+                })
+        var dec19=new ol.layer.Group({
+                    title: 'Overlay',
+                    layers: [field19dec,lyr19dec],
+                    
+                })
+        var dec12=new ol.layer.Group({
+                    title: 'Overlay',
+                    layers: [field12dec,lyr12dec],
+                    
+                })
+        var nov21=new ol.layer.Group({
+                    title: 'Overlay',
+                    layers: [field21nov,lyr21nov],
+                    
+                })                
+
+
+
+
+        
+
+
+
+        var stages=new ol.layer.Group({
+                    title: 'Overlay',
+                    layers: [nov21,dec12,dec19,jan7,jan25],
+                    
+                })
+
+        var map = new ol.Map({
+            // controls: ol.control.defaults().extend([mousePositionControl]),
+            target: 'map',
+            layers: [base_lyr,nov21,dec12,dec19,jan7,jan25],
+            view: new ol.View({
+                center: [8727325.249121, 1958618.264098],
+                zoom: 20,
+            })
+        });
+
+        var field_flag=false;
+        var lai_flag=true;
+        // $("#lai_onn")
+        lai_ele=document.getElementById('lai_onn')
+        lai_ele.style.backgroundColor="#d4fad6"
+
+
+        console.log("layer group stages: ",map.getLayers().array_[1].getLayers())
+        console.log("overlay id=1: ",map.getOverlays())
+
+        // 21st Nov: Early vegetative
+        // 12th Dec: Late vegetative
+        // 19th Dec: Tasselling
+        // 10th Jan: Silking
+        // 25th Jan: Dough 
+        output_disp=[   "Move slider for observing stages",
+        '<h4> <b>Date : </b> 21 November 2018 </h4> <h4> <b>Stage : </b>Early Vegetative</h4> ',
+        '<h4> <b>Date : </b> 12 December 2018 </h4> <h4> <b>Stage : </b>Late Vegetative</h4> ',
+        '<h4> <b>Date : </b> 19 December 2018 </h4> <h4> <b>Stage : </b>Tasselling Stage</h4> ',
+        '<h4> <b>Date : </b> 7 January 2019 </h4> <h4> <b>Stage : </b>Silking Stage </h4> ',
+        '<h4> <b>Date : </b> 25 January 2019 </h4> <h4> <b>Stage : </b>Dough Stage </h4> '
+        ]
+        var y= document.getElementById("menu1");
+        var list_stages=y.getElementsByTagName("li");
+        console.log(list_stages)
+        text_original=["RGB","Early Vegetative","Late Vegetative","Tasselling","Silking","Dough"];
+        console.log("<b class='timeline'>"+list_stages[0].innerHTML+"</b>")
+        list_stages[0].innerHTML="<b class='timeline'>"+text_original[0]+"</b>";
+        console.log( list_stages[0].innerHTML)
+        
+
+        $("#slider").slider({
+            min: 0,
+            max: 5,
+            range: "max",
+            slide: function (e,ui) 
+            {
+                var x = document.getElementById("display");
+                 console.log(ui.value);
+                    //    lctrl.clearLayers();
+                index=ui.value
+                list_stages[index].innerHTML="<b class='timeline'>"+list_stages[index].innerHTML+"</b>";
+                if(index!=0)
+                list_stages[(index-1)].innerHTML=text_original[index-1];
+                if(index+1<text_original.length)
+                list_stages[(index+1)].innerHTML=text_original[index+1];
+                x.innerHTML=output_disp[ui.value];
+                console.log(output_disp[ui.value-1]);
+                console.log(map.getLayers().array_[ui.value].getLayers().array_[0])
+                console.log(map.getLayers().array_.length)
+                field.setVisible(true)
+                for (i = 1; i < map.getLayers().array_.length; i++)
+                {
+                    console.log(map.getLayers().array_[i].getLayers().array_[0])
+                    map.getLayers().array_[i].getLayers().array_[1].setVisible(false);
+                    map.getLayers().array_[i].getLayers().array_[0].setVisible(false);
+                    
+                    if(i==ui.value)
+                    {
+                        
+                        if(field_flag)
+                        {
+                            map.getLayers().array_[i].getLayers().array_[0].setVisible(true);
+                            field.setVisible(false);
+                        }
+                       
+                       if(lai_flag)
+                        map.getLayers().array_[i].getLayers().array_[1].setVisible(true);
+                    }
+
+                }
+                
+                }
+        });
+       
+
+        $("#slider2").slider({
+            slide: function (e,ui) 
+            {
+
+                var x = document.getElementById("display");
+                
+                console.log("the dhtml element here:",y);
+                console.log(ui.value);
+                console.log("index:",parseInt(ui.value*4/100)+1)
+                console.log("approaching:",ui.value*4/100)
+                approaching=ui.value*5/100
+                index=parseInt(ui.value*5/100)+1;
+                list_stages[index].innerHTML="<b class='timeline'>"+list_stages[index].innerHTML+"</b>";
+                if(index!=0)
+                list_stages[(index-1)].innerHTML=text_original[index-1];
+                if(index+1<text_original.length)
+                {
+                    list_stages[(index+1)].innerHTML=text_original[index+1];
+                    console.log("error here:",text_original[index+1])
+                }
+
+                
+
+
+                
+               
+                
+                    //    lctrl.clearLayers();
+                x.innerHTML=output_disp[index];
+                console.log(output_disp[index-1]);
+                console.log(map.getLayers().array_[1].getLayers().array_[index])
+                next_stage=index+1;
+                // map.getLayers().array_[1].getLayers().array_[0].setVisible(true);
+
+                for (i = 1; i < map.getLayers().array_.length; i++)
+                {
+
+                    map.getLayers().array_[i].getLayers().array_[1].setVisible(false);
+                    // map.getLayers().array_[i].getLayers().array_[0].setVisible(false);
+                    if(approaching-index< 0.5 && next_stage<map.getLayers().array_.length)
+                    {
+
+                        console.log("opacity od approaching layer:",index-approaching)
+                        map.getLayers().array_[next_stage].getLayers().array_[1].setVisible(true);
+                        // map.getLayers().array_[next_stage].getLayers().array_[0].setVisible(true);
+                        map.getLayers().array_[next_stage].getLayers().array_[1].setOpacity(1-index+approaching)
+                        // map.getLayers().array_[next_stage].getLayers().array_[0].setOpacity(1-index+approaching)
+
+
+
+                    }
+                    if(i==index)
+                    {
+                        // map.getLayers().array_[i].getLayers().array_[0].setVisible(true);
+                        map.getLayers().array_[i].getLayers().array_[1].setVisible(true);
+                    }
+
+                }
+                if(index==map.getLayers().array_.length)
+                {
+                    map.getLayers().array_[index-1].getLayers().array_[1].setVisible(true);
+                    // map.getLayers().array_[index-1].getLayers().array_[0].setVisible(true);
+                }
+                if(ui.value==0)
+                {
+                    map.getLayers().array_[1].getLayers().array_[1].setVisible(false);
+                    // map.getLayers().array_[1].getLayers().array_[0].setVisible(false);
+                    list_stages[0].innerHTML="<b class='timeline'>"+text_original[0]+"</b>";
+                    list_stages[1].innerHTML=text_original[1];
+                
+                }
+
+                
+                }
+        });
+        $("#op-control").slider({
+            slide : function(e,ui)
+            {
+                var val=$("#slider").slider("value");
+                if(val!=0)
+                    // stages.getLayers()[val-1].setOpacity(parseFloat(ui.value/100));  
+                 console.log(map.getLayers().array_[val].getLayers().array_[0])
+                
+                map.getLayers().array_[val].getLayers().array_[1].setOpacity(parseFloat(ui.value/100));            
+            }
+       });
+
+        $("#reset").click(function() {
+            for (i = 1; i < map.getLayers().array_[1].getLayers().array_.length; i++)
+            {
+                 map.getLayers().array_[i].getLayers().array_[1].setOpacity(0.7);
+                //  map.getLayers().array_[i].getLayers().array_[0].setOpacity(1);
+
+            }
+            var $slider = $("#op-control");
+            $slider.slider("value",0.7);
+
+        });
+
+
+        $("#lai_onn").click(function() {
+             var val=$("#slider").slider("value");
+                if(val!=0)
+                    // stages.getLayers()[val-1].setOpacity(parseFloat(ui.value/100));  
+                 console.log(map.getLayers().array_[val].getLayers().array_[0])
+                
+                if(map.getLayers().array_[val].getLayers().array_[1].getVisible())
+                {
+                    this.style.backgroundColor="white"
+                    lai_flag=false;
+                    map.getLayers().array_[val].getLayers().array_[1].setVisible(false)
+                }
+                else
+                {
+                    lai_flag=true;
+                    this.style.backgroundColor="#d4fad6"
+                    map.getLayers().array_[val].getLayers().array_[1].setVisible(true)
+                }            
+           
+       });
+       $("#background_onn").click(function() {
+             var val=$("#slider").slider("value");
+                if(val==0) 
+                field.setVisible(true)
+                //  console.log(map.getLayers().array_[val].getLayers().array_[0])
+
+                //  var base_layers=map.getLayers().array_[0].getLayers()
+                
+                //  console.log(field)
+                if(map.getLayers().array_[val].getLayers().array_[0].getVisible())
+                {
+                    map.getLayers().array_[val].getLayers().array_[0].setVisible(false)
+                    field.setVisible(true)
+                    this.style.backgroundColor="white"
+                    field_flag=false;
+
+                }
+                else
+                {
+                    map.getLayers().array_[val].getLayers().array_[0].setVisible(true)
+                    field.setVisible(false)
+                    this.style.backgroundColor="#d4fad6"
+                    field_flag=true;
+                }            
+           
+       });
+
+
+
+
+        
+
+        
+
+        // map.addControl(new ol.control.LayerSwitcher());
+        var scale_control=control = new ol.control.ScaleLine({
+                units: 'metric',
+                bar: true,
+                steps: 4,
+                text: true,
+                minWidth: 140,
+            });
+
+        map.addControl(scale_control);
+
+    </script>
+</body>
+</html>
