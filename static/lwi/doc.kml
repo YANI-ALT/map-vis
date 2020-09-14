@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>lwi_georef2.vrt</name>
+    <description></description>
+    <Style>
+      <ListStyle id="hideChildren">
+        <listItemType>checkHideChildren</listItemType>
+      </ListStyle>
+    </Style>
+    <NetworkLink>
+      <name>18/188160/143883.png</name>
+      <Region>
+        <LatLonAltBox>
+          <north>17.32442044329013</north>
+          <south>17.32310944836228</south>
+          <east>78.39981079101562</east>
+          <west>78.39843750000000</west>
+        </LatLonAltBox>
+        <Lod>
+          <minLodPixels>128</minLodPixels>
+          <maxLodPixels>-1</maxLodPixels>
+        </Lod>
+      </Region>
+      <Link>
+        <href>18/188160/143883.kml</href>
+        <viewRefreshMode>onRegion</viewRefreshMode>
+        <viewFormat/>
+      </Link>
+    </NetworkLink>
+        
+    <NetworkLink>
+      <name>18/188160/143884.png</name>
+      <Region>
+        <LatLonAltBox>
+          <north>17.32573142886094</north>
+          <south>17.32442044329013</south>
+          <east>78.39981079101562</east>
+          <west>78.39843750000000</west>
+        </LatLonAltBox>
+        <Lod>
+          <minLodPixels>128</minLodPixels>
+          <maxLodPixels>-1</maxLodPixels>
+        </Lod>
+      </Region>
+      <Link>
+        <href>18/188160/143884.kml</href>
+        <viewRefreshMode>onRegion</viewRefreshMode>
+        <viewFormat/>
+      </Link>
+    </NetworkLink>
+              </Document>
+</kml>
+    
