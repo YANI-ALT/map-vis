@@ -34,6 +34,9 @@
                 width: 90px;
                 margin:10px;
                 margin-left: 10px;
+                text-align:right;
+                font-size:12px;
+                /* background-color: blue;  */
             }
         #reset,#lai_onn,#background_onn{
                 margin: 10px;
@@ -81,10 +84,13 @@
         }
         #content-title
         {
-            padding:5px;
+            /* padding:5px; */
             margin:5px;
             font-family: 'Open Sans', sans-serif;
-            font-size: 30px;
+            font-size: 25px;
+            padding-bottom:5px;
+            margin-bottom: 10px;
+            
             /* border: 1px solid red;  */
            
             
@@ -165,7 +171,7 @@
    
     <!-- <div id="mouse-position"></div> -->
     <div id="mapbox2">
-        <div style="float:right;width:100%;margin-right:6px;margin-bottom:10px;border-bottom: 1px solid  rgba(185, 188, 190, 0.973);">
+        <div style="float:right;width:100%;margin-right:6px;border-bottom: 1px solid  rgba(185, 188, 190, 0.973);">
             <img src="static/images/AI_Lab_Logo.PNG" id="logo">
             <ul id="nav" style="float:right;margin:10px;padding:10px" >
                 <li><a href= "index.html">Home</a></li>
@@ -191,8 +197,11 @@
                 <p style="font-size: 10px;margin-bottom: 6px;">Legend: Leaf Area Index</p>
                 <img id="leg-img" src="static/images/legend.png" alt="legend">
             </div> 
+           
+            <p style="font-size:10px;margin:5px;width:15%;">Opacity Control</p>
+            <div id="op-control"></div> 
+           
             <div id="slider" class="slid"></div> 
-            
             <p style="margin-left:2px;font:sans-serif;font-size:10px">|_______________|______________|_______________|_______________|______________|</p>
 
             <ul id="menu1" >
@@ -208,11 +217,11 @@
                 <!-- <li> | </li> -->
                 <li> Dough </li>
             </ul>  
-            
+           
 
             <div id="slider2" class="slid" ></div>
             
-            <div id="op-control"></div>
+            <!-- <div id="op-control"></div> -->
             <button type="button" id="reset" class="btn btn-success">Reset</button>
             <button type="button" id="lai_onn" class="btn btn-success">LAI map</button>
             <button type="button" id="background_onn" class="btn btn-success">Field</button>
