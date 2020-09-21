@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=UTF-8 />
+    <!-- <script src="https://threejsfundamentals.org/threejs/resources/threejs/r119/build/three.module.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
+    <!-- <script src="https://unpkg.com/ol-layerswitcher@3.5.0"></script> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ol-layerswitcher@3.5.0/src/ol-layerswitcher.css" />
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" type="text/css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cube_style.css') }}"/>
+  </head>
+ <body>
+  <div id="model">
+      <div id="info"> 
+        <p style="color: black;background: linear-gradient(90deg, rgba(29,29,29,1) 0%, rgba(50,54,213,1) 20%, rgba(42,245,46,1) 40%, rgba(221,26,21,1) 60%, rgba(238,241,46,1) 80%, rgba(255,255,255,1) 100%);"></br></p>
+        <p style="color: white;">Colour Map : <- Lower (420 nm)  -  Higher (970 nm) -></p>
+
+      </div>
+      <canvas id="c">
+      </canvas>
+  </div>
+    <div style="float:left;width:58%;margin-right:6px;border-bottom: 1px solid  rgba(185, 188, 190, 0.973);">
+      <img src="{{ url_for('static', filename='images/AI_Lab_Logo.PNG') }}" id="logo">
+      <ul id="nav" style="float:right;margin:10px;padding:10px" >
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('analysis2') }}">LWC Analysis</a>  </li>
+        <li><a href="{{ url_for('model') }}">HyperSpectral Cube</a> </li>
+       
+        <li><a href="{{ url_for('LWC') }}"></br>LWC</a> </li>
+        <li><a href="{{ url_for('LAI1') }}">LAI 1</a>  </li>
+        <li><a href="{{ url_for('LAI2') }}">LAI 2</a> </li>
+        <li><a href="{{ url_for('Plot_Info') }}">Plot Info</a></li> 
+      </ul>
+  </div>
+      <div id="graph">   
+      <div id="mapbox">
+       
+        <div id="graph-inp">
+          <input id="x" type=text size=5 name=x>
+          <input id="y" type=text size=5 name=y>
+
+          <a href=# id="process_input"><button id="process" class="btn btn-outline-secondary btn-sm">Add Point</button></a>
+          <a href=# id="reset_graph"><button id="reset" class="btn btn-outline-secondary btn-sm">Clear Graph</button></a>
+          <div id="show-data" ></div>
+      </div>
+      <div id="map" class="map"><div id="popup"></div></div>
+        <div id="graph-box">
+          <!-- <p style="margin:0px;padding:0px;">Spectral graph plot</p> -->
+          <canvas id="myChart"></canvas>
+          <!-- <div id="graph-inp">
+            <input id="x" type=text size=5 name=x>
+            <input id="y" type=text size=5 name=y>
+
+            <a href=# id=process_input><button class="btn btn-outline-secondary btn-sm">Add Point</button></a>
+              <a href=# id=reset_graph><button class="btn btn-outline-secondary btn-sm">Clear Graph</button></a>
+            <div id="show-data" ></div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <script src="static/three.js-master/build/three.min.js"></script>
+  <script src="static/three.js-master/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="static/three/OrbitControls.js"></script> -->
+
+  <script src="{{ url_for('static', filename='three.js-master/build/three.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='three.js-master/examples/js/loaders/GLTFLoader.js') }}"></script>
+  <script src="{{ url_for('static', filename='three/OrbitControls.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/cube.js') }}"></script>
+  <!-- <script src="{{ url_for('static', filename='chart_file.js') }}"></script> -->
+  <!-- <script src="{{ url_for('static', filename='map_file.js') }}"></script> -->
+  <script src="{{ url_for('static', filename='scripts/map_file_hsi.js') }}"></script>
+  <script type="text/javascript">
+  var vsource=new ol.source.Vector()
+
+  var vectorLayer = new ol.layer.Vector({
+      source: vsource,
+      style: new ol.style.Style({
+        image: new ol.style.Icon({
+          anchor: [0.5, 36],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'pixels',
+          // src: 'http://openlayers.org/en/latest/examples/data/icon.png'
+          src:"{{ url_for('static', filename='images/loc1.png') }}"
+        })
+      })
+    });
+
+  map.addLayer(vectorLayer);
+
+  var label_cnt=0; 
+
+  
+  var element = document.getElementById('popup');
+  var popup = new ol.Overlay({
+    element: element,
+    positioning: 'bottom-center',
+    stopEvent: false,
+    offset: [0, -50],
+  });
+  map.addOverlay(popup);
+ 
+
+
+
+
+
+    var showData = $('#show-data');
+    map.on('click', function(event) {
+
+      label_cnt=label_cnt+1;
+
+    var coord=map.getCoordinateFromPixel(event.pixel);
+    console.log("coord:",coord)
+    console.log("for map:",map.getPixelFromCoordinate(coord))
+    // console.log("for map2:",map2.getPixelFromCoordinate(coord))
+    const latlong = ol.proj.transform(coord, 'EPSG:3857', 'EPSG:4326');
+    console.log("pixel from click and then transform: ",latlong);
+
+    $.getJSON('/coord_pixel', {
+      lat: latlong[0],
+      long: latlong[1],
+    }, function(data) {
+      // $("#result").text(data.result);
+      console.log(data)
+      if(data.err==1)
+      {
+        document.getElementById("x").value='';
+        document.getElementById("y").value='';
+        showData.text('No spectral data.. select other point');
+      }
+      else
+      {
+        document.getElementById("x").value=data.x;
+        document.getElementById("y").value=data.y;
+        showData.text('Valid Point')
+
+      }
+
+    });
+
+    //add the icon
+
+    var coord=map.getCoordinateFromPixel(event.pixel);
+    console.log("coord:",coord)
+    console.log("for map:",map.getPixelFromCoordinate(coord))
+    console.log("for pt geom: ",ol.proj.fromLonLat(coord))
+    // console.log("for map2:",map2.getPixelFromCoordinate(coord))
+    const pixlatlong = ol.proj.transform(coord, 'EPSG:3857', 'EPSG:4326');
+    console.log("pixel from click and then transform: ",pixlatlong);
+    vsource.addFeature(new ol.Feature({
+              geometry: new ol.geom.Point(
+                coord
+              ),
+              name: label_cnt
+            }))
+
+    })
+    Chart.defaults.global.responsive = false;
+
+
+    var label_typ=[{% for item in labels %}"{{item}}",{% endfor %}]
+    var chart_label=[]
+    console.log(typeof parseFloat(label_typ[0]))
+    for(var i=0; i<label_typ.length;i++) chart_label[i] = parseFloat(label_typ[i]);
+    console.log(chart_label)
+  // define the chart data
+  // var labelling=[{% for item in labels %}"{{item}}",{% endfor %}]
+  var chartData = {
+    labels :chart_label,
+    // datasets : [{
+    //     label: '',
+    //     fill: true,
+    //     lineTension: 0.1,
+    //     backgroundColor: "#ffffff",
+    //     borderColor: "rgba(75,192,192,1)",
+    //     borderCapStyle: 'butt',
+    //     borderDash: [],
+    //     borderDashOffset: 0.0,
+    //     borderJoinStyle: 'miter',
+    //     pointBorderColor: "rgba(75,192,192,1)",
+    //     pointBackgroundColor: "#ffffff",
+    //     pointBorderWidth: 1,
+    //     pointHoverRadius: 5,
+    //     pointHoverBackgroundColor: "rgba(75,192,192,1)",
+    //     pointHoverBorderColor: "rgba(220,220,220,1)",
+    //     pointHoverBorderWidth: 2,
+    //     pointRadius: 1,
+    //     pointHitRadius: 10,
+    //     data : [],
+    //     spanGaps: false
+    // }]
+    datasets:[]
+  }
+
+  // get chart canvas
+  var ctx = document.getElementById("myChart").getContext("2d");
+
+  var colors=["rgba(75,192,192,1)","#0000FF","#DE3163","#7FFF00","#FFD700","#4B0082","#483C32","#FA8072"]
+  var color_cnt=0;
+  // create the chart using the chart canvas
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: chartData,
+    options:{
+      title: {
+            display: true,
+            text: 'Hyper Spectral Plot'
+        },
+      scales: {
+        
+        // xAxes: [{
+        //   scaleLabel: {
+        //     display: true,
+        //     labelString: 'Wavelength (nm)'
+        //   },
+        //
+        //   // ticks: {
+        //   //           // min: 400,
+        //   //           max: 800,
+        //   //           // autoSkip: true,
+        //   //           maxRotation: 90,
+        //   //           minRotation: 90,
+        //   //           stepSize:100
+        //   //       }
+        // }],
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Wavelength (nm)'
+          },
+          ticks: {
+                    // min: 400,
+                    // autoSkip: true,
+                    // min: 400,
+                    // max:1000,
+                    maxRotation: 10,
+                    minRotation: 10,
+                    // stepSize:100,
+                    // precision:0,
+                   
+                },
+          
+          }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Reflectance'
+          },
+
+
+        }]
+      }
+  }});
+
+
+  function addData(chart, label_name,data) {
+
+    var data_points=[]
+    for (var i = 0; i < data.length; i++) {
+                    data_points.push({
+                        x: chart_label[i],
+                        y: data[i]
+                        });
+                }
+
+
+  chart.data.datasets.push({
+    label: label_name,
+    borderColor: colors[color_cnt],
+    data: data_points,
+    fill: true,
+    lineTension: 0.1,
+    // labels:labelling,
+    borderCapStyle: 'butt',
+    borderDash: [],
+    borderDashOffset: 0.0,
+    borderJoinStyle: 'miter',
+    pointBorderColor: colors[color_cnt],
+    pointBackgroundColor: "#ffffff",
+    pointBorderWidth: 1,
+    pointHoverRadius: 5,
+    pointHoverBackgroundColor: colors[color_cnt],
+    pointHoverBorderColor: "rgba(220,220,220,1)",
+    pointHoverBorderWidth: 2,
+    pointRadius: 1,
+    pointHitRadius: 10,
+
+    spanGaps: false
+
+  });
+  chart.update();
+  }
+
+  map.on('pointermove',function(evt){
+      
+      var feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+      return feature;
+      });
+      if (feature) {
+        var coordinates = feature.getGeometry().getCoordinates();
+        popup.setPosition(coordinates);
+        $(element).popover({
+          placement: 'top',
+          html: true,
+          content: feature.get('name'),
+        });
+        $(element).popover('show');
+      } else {
+        $(element).popover('dispose');
+      }
+
+    });
+//
+//   setTimeout(function() {
+// addData(myChart, '# of Votes 2017', '#ff0000', [100,16, 14, 8]);
+// }, 3000);
+
+$(function() {
+      $('a#process_input').bind('click', function() {
+         var showData = $('#show-data');
+         showData.text('Computing the spectral graph...');
+
+      $.getJSON('/background_process', {
+        x: $('input[name="x"]').val(),
+        y: $('input[name="y"]').val(),
+      }, function(data) {
+        // $("#result").text(data.result);
+        console.log(data)
+        addData(myChart,label_cnt,data.arr)
+        color_cnt=(color_cnt+1)%10;
+        showData.text('Done');
+        document.getElementById("x").value='';
+        document.getElementById("y").value='';
+
+      });
+      });
+
+    });
+
+
+
+  $('a#reset_graph').bind('click', function() {
+    myChart.destroy();
+    color_cnt=0;
+    chartData={
+     labels : chart_label,
+     // datasets : [{
+     //     label: '',
+     //     fill: true,
+     //     lineTension: 0.1,
+     //     backgroundColor: "#ffffff",
+     //     borderColor: "rgba(75,192,192,1)",
+     //     borderCapStyle: 'butt',
+     //     borderDash: [],
+     //     borderDashOffset: 0.0,
+     //     borderJoinStyle: 'miter',
+     //     pointBorderColor: "rgba(75,192,192,1)",
+     //     pointBackgroundColor: "#ffffff",
+     //     pointBorderWidth: 1,
+     //     pointHoverRadius: 5,
+     //     pointHoverBackgroundColor: "rgba(75,192,192,1)",
+     //     pointHoverBorderColor: "rgba(220,220,220,1)",
+     //     pointHoverBorderWidth: 2,
+     //     pointRadius: 1,
+     //     pointHitRadius: 10,
+     //     data : [],
+     //     spanGaps: false
+     // }]
+     datasets:[]
+   },
+    myChart = new Chart(ctx, {
+    type: 'line',
+    data: chartData,
+    options:{
+      title:{
+            display: true,
+            text: 'Hyper Spectral Plot'
+        },
+      scales: {
+        // xAxes: [{
+        //   scaleLabel: {
+        //     display: true,
+        //     labelString: 'Wavelength (nm)'
+        //   },
+        //
+        //   // ticks: {
+        //   //           // min: 400,
+        //   //           max: 800,
+        //   //           // autoSkip: true,
+          //           maxRotation: 90,
+          //           minRotation: 90,
+        //   //           stepSize:100
+        //   //       }
+        // }],
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Wavelength (nm)'
+          },
+          ticks: {
+                    // min: 400,
+                    // autoSkip: true,
+                    maxRotation: 10,
+                    minRotation: 10,
+                    // precision:1,
+                },
+          }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Reflectance'
+          },
+
+
+        }]
+      }
+  }});
+
+    vsource.clear()
+
+  })
+
+
+
+
+
+
+  </script>
+</body>
+</html>

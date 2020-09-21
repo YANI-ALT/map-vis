@@ -173,12 +173,12 @@
         }
         #treatment{
                 margin: 5px;
-                /* margin-left: 0px;
+                margin-left: 0px;
                 font-family: 'Open Sans', sans-serif;
                 border: 3px solid  #74a9cf;
                 background-color: white; 
                 color:black;
-                border-radius: 12px; */
+                border-radius: 12px;
                 float:left;
 
                 
@@ -186,7 +186,6 @@
         #treatinfo
        {
             width:350px;
-            float:right;
         }
 
 
@@ -196,42 +195,21 @@
             height:100%;
             width:100%;
             /* background-color: blue;  */
-            /* display: none; */
+            display: none;
             float:left;
 
         }
         #info-box
         {
              /* background-color: blue;  */
-             padding-top:10px;
+             padding-top:8px;
         }
-        #Canopy_ht_img,#lwc_info_img,#yield,#lai_img
-        {
-                margin: 5px;
-                /* margin-left: px; */
-                font-family: 'Open Sans', sans-serif;
-                border: 3px solid  #74a9cf;
-                background-color: white; 
-                color:black;
-                border-radius: 12px;
-                float:left;
-                width:15%;
-                height:80px;
-                padding:10px;
-                
-                
-
-        }
-        #Canopy_ht_img:hover,#lwc_info_img:hover,#yield:hover,#lai_img:hover
-       {
-           background-color:#c9c9c9;
-       }
 
         /*modal related*/
            .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
-            z-index: 2; /* Sit on top */
+            z-index: 1; /* Sit on top */
             padding-top: 100px; /* Location of the box */
             left: 0;
             top: 0;
@@ -346,24 +324,49 @@
         </div>
         <div class="textbox">
             <p id="content-title"> Field Information</p>
-            
-            <div style="width:100%;height:50%;font-size:12px;">
+            <div id='widget-panel'>
+                
+                <form class="form-inline" style="padding:4px;padding-bottom:2px;float:left;">
+                    <label>Graphs &nbsp;</label>
+                    <select id="graphs">
+                    <option value="None">None</option>
+                    <option value="GT_canopy_height">Canopy Height</option>
+                    <option value="GT_LAI">Leaf Area </option>
+                    <option value="LWC_info">Leaf Water Content</option>
+                    <option value="yield_info">Yield Info</option>
+                    </select>
+                </form>
+
+                <ul style="font-size:12px;margin:5px;width:50%;float:right;padding-left:0;">
+                    <li>Canopy Height</li>
+                    <li>Leaf Area</li>
+                    <li>Leaf Water </li>
+                    <li>Yield Info</li>
+                </ul>
+               <button type="button" id="treatment" class="btn btn-primary btn-sm">Treatment</button>
+                
+            </div>
+            <div style="width:50%;height:50%;font-size:12px;">
             <table class="table table-bordered table-sm">
                 <tbody>
                   <tr>
                     
-                    <td><b>Crop :</b></td>
+                    <td>Crop</td>
                     <td>Maize (Zea mays L.)</td>
+                  </tr>
+                  <tr>
                   
-                    <td><b>Variety :</b></td>
+                    <td>Variety</td>
                     <td>Monsanto 900 M gold</td>         
                   </tr>
                   <tr>
                  
-                    <td><b>Sowing Date :</b></td>  
+                    <td>Sowing Date</td>  
                     <td>15th Oct 2018</td>         
+                  </tr>
+                  <tr>
                   
-                    <td><b>Harvesting Date :</b></td>    
+                    <td>Harvesting Date</td>    
                     <td>15th Oct 2018</td>           
                   </tr>
 
@@ -393,20 +396,25 @@
                 <li>Dough</li>
             </ul>  
         </div>
-       
+
+            
+<!--                  -->
                     <div id="info-box">
                         <!-- all the divs controlled by buttons etc go here -->
-                    <div id="treatinfo" >
-                       <!-- <b>Information on treatments for plots</b> -->
-                        <!-- </br> -->
-                    
+                    <div class="info" id="treatinfo" >
+                       <b>Information on treatments for plots</b>
+                        <!-- <ul>
+                            <li><b  style="background-color:red;">I1</b>: Less Quantitiy of Irrigation</li>
+                            <li> <b  style="background-color:blue;color:white">I2</b> : Medium Quantitiy of Irrigation</li>
+                            <li> <b  style="background-color:#66ff66;color:black">I3</b> : More Quantitiy of Irrigation</li>
+                            <li><b >N1: _______</b>: Less Quantitiy of Irrigation</li>
+                            <li> <b >N2: _ _ _ _ _</b> : Medium Quantitiy of Irrigation</li>
+                            <li> <b >N3: .........</b> : More Quantitiy of Irrigation</li>
+                          
+                        </ul>  -->
 
                         <table class="table table-bordered table-sm">
-                            <tbody style="font-size:12px;width:50%;">
-                                <tr>
-                                    <!-- <th scope="row"> </th> -->
-                                    <td style="padding:0px;" colspan="3"><input type="checkbox" id="treatment"> <p style="margin:2px;font-size:15px;">Plot Treatment</p></td>     
-                                  </tr>
+                            <tbody style="font-size:12px;width:60%;">
                               <tr>
                                 <th scope="col">I1</th>
                                 <td style="background-color:red;"></td>
@@ -441,16 +449,9 @@
                             </tbody>
                           </table>
                     </div> 
-                    <div style="padding:10px;margin:5px;">
-                        <button type="button" id="Canopy_ht_img" class="btn btn-primary btn-sm info_blck">Canopy Height</button>
-                        <button type="button" id="lai_img" class="btn btn-primary btn-sm info_blck">Leaf Area Index</button>
-                        <button type="button" id="lwc_info_img" class="btn btn-primary btn-sm info_blck">Leaf Water Content </button>
-                        <button type="button" id="yield" class="btn btn-primary btn-sm info_blck">Yield Info</button>
-                        
-                    </div>
                     <div class="info" id="GT_canopy_height">
-                        <!-- <b>GT Canopy Height</b> -->
-                        <img style="display:none;" id="GT_canopy_height_img" alt="GT Canopy Height" src="static/info_images/GT_canopy_height.png" width="600">
+                        <b>GT Canopy Height</b>
+                        <img id="GT_canopy_height_img" alt="GT Canopy Height" src="static/info_images/GT_canopy_height.png" width="600">
                         <div id="myModal" class="modal">
 
                             <!-- The Close Button -->
@@ -463,8 +464,8 @@
                         </div>
                     </div>
                     <div class="info" id="GT_LAI" >
-                        <!-- <b>GT Leaf Area Index</b> -->
-                        <img style="display:none;" id="GT_LAI_img" alt="GT Leaf Area index" src="static/info_images/GT_LAI.png" width="600">
+                        <b>GT Leaf Area Index</b>
+                        <img id="GT_LAI_img" alt="GT Leaf Area index" src="static/info_images/GT_LAI.png" width="600">
                         <!-- The Modal -->
                         <div id="myModal" class="modal">
 
@@ -478,8 +479,8 @@
                         </div>
                     </div>
                     <div class="info" id="LWC_info" >
-                        <!-- <b>Leaf Water Content</br></b> -->
-                        <img  style="display:none;" id="LWC_info_img" alt="Leaf Water Content" src="static/info_images/LWC_info.png" width="400">
+                        <b>Leaf Water Content</br></b>
+                        <img id="LWC_info_img" alt="Leaf Water Content" src="static/info_images/LWC_info.png" width="400">
                         <div id="myModal" class="modal">
 
                             <!-- The Close Button -->
@@ -492,8 +493,8 @@
                         </div>
                     </div>
                     <div class="info" id="yield_info" >
-                        <!-- <b>Yield Information</br></b> -->
-                        <img style="display:none;" id="yield_info_img" alt="Yield Information" src="static/info_images/yield_info.png"  width="400">
+                        <b>Yield Information</br></b>
+                        <img id="yield_info_img" alt="Yield Information" src="static/info_images/yield_info.png"  width="400">
                         <div id="myModal" class="modal">
 
                             <!-- The Close Button -->
@@ -520,8 +521,12 @@
     
     <!-- <div id="slider-id"><div class="ui-slider-handle"></div> -->
     <script type="text/javascript">
-    //global variable defined here;
-        var treat_vl,treat_flag ;
+    
+        // var mousePositionControl = new ol.control.MousePosition({
+        //     className: 'custom-mouse-position',
+        //     target: document.getElementById('mouse-position'),
+        //     undefinedHTML: '&nbsp;'
+        // });
         osm=new ol.layer.Tile({
                                 title: 'OpenStreetMap',
                                 type: 'base',
@@ -566,72 +571,72 @@
                         layers: [osm,streets,sat,field ]
                 })
 
-        // var lyr25jan= new ol.layer.Tile({
-        //                     title: '25Jan',
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url: "static/25janC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
-        // var lyr21nov= new ol.layer.Tile({
-        //                     title: '21Nov',
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url: "static/21novC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
-        // var lyr7jan= new ol.layer.Tile({
-        //                     title: '7jan',
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url: "static/7janC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
-        // var lyr12dec=new ol.layer.Tile({
-        //                     title: '12dec',
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],                            
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url: "static/12decC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
-        // var lyr19dec=new ol.layer.Tile({
-        //                     title: '19dec',
-        //                     // opacity: 0.7,
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.328329, 1958591.866426,8727337.310967, 1958630.721182],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 18,
-        //                         maxZoom: 24,
-        //                         url: "static/19decC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
+        var lyr25jan= new ol.layer.Tile({
+                            title: '25Jan',
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 20,
+                                maxZoom: 24,
+                                url: "static/25janC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var lyr21nov= new ol.layer.Tile({
+                            title: '21Nov',
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 20,
+                                maxZoom: 24,
+                                url: "static/21novC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var lyr7jan= new ol.layer.Tile({
+                            title: '7jan',
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 20,
+                                maxZoom: 24,
+                                url: "static/7janC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var lyr12dec=new ol.layer.Tile({
+                            title: '12dec',
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],                            
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 20,
+                                maxZoom: 24,
+                                url: "static/12decC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
+        var lyr19dec=new ol.layer.Tile({
+                            title: '19dec',
+                            // opacity: 0.7,
+                            visible:false,
+                            opacity: 0.7,
+                            extent: [8727304.328329, 1958591.866426,8727337.310967, 1958630.721182],
+                            source: new ol.source.XYZ({
+                                attributions: '',
+                                minZoom: 18,
+                                maxZoom: 24,
+                                url: "static/19decC/"+'{z}/{x}/{-y}.png',
+                                tileSize: [256, 256]
+                            })
+                        })
                         
         var field7jan=new ol.layer.Tile({
                             title: 'field 7jan',
@@ -791,16 +796,7 @@
             {
                 var x = document.getElementById("display");
                  console.log(ui.value);
-                 
-                console.log("here is treat_vl :",treat_vl)
-                if(treat_flag)
-                {
-                    treat_vl.setVisible(true);
-                }
-                else
-                {
-                    treat_vl.setVisible(false);
-                }
+                    //    lctrl.clearLayers();
                 index=ui.value
                 list_stages[index].innerHTML="<b class='timeline'>"+list_stages[index].innerHTML+"</b>";
                 if(index!=0)
@@ -808,8 +804,8 @@
                 if(index+1<text_original.length)
                 list_stages[(index+1)].innerHTML=text_original[index+1];
                 x.innerHTML=output_disp[ui.value];
-                
-              
+                // console.log(output_disp[ui.value-1]);
+                // console.log(map.getLayers().array_[ui.value].getLayers().array_[0])
                 console.log("layers in timeline: ",map.getLayers().array_.length)
                 for (i = 1; i < map.getLayers().array_.length; i++)
                 {
@@ -1080,7 +1076,7 @@
             features:[]
         });
 
-    treat_vl = new ol.layer.Vector({
+    var treat_vl = new ol.layer.Vector({
             source: treat_VS,
         });
     map.addLayer(treat_vl);
@@ -1113,25 +1109,26 @@
     
 
 
-    var treat_check=document.getElementById("treatment").value;
-    console.log(treat_check)
+
     $(document).ready(function(){
 
 
         $("#treatment").click(function(){
-            console.log(this)
             if(treat_vl.getVisible())
             {
-                treat_flag=false
                 treat_vl.setVisible(false);
+                this.style.backgroundColor="white"
+                $("#treatinfo").hide();
+                $('#timeline-box').show()
             }
             else
             {   
-                treat_flag=true
                 treat_vl.setVisible(true);
-              
+                this.style.backgroundColor="#d4fad6"
+                $(".info").not("#treatinfo").hide();
+                $("#treatinfo").show();
+                $('#timeline-box').show()
             }
-
         })
         })
 
@@ -1191,13 +1188,12 @@
             console.log("modalimg:",modalImg)
             console.log("caption TExt:",captionText)
 
-            
+            img.onclick = function(){
             modal.style.display = "block";
-            modalImg.src = img.src;
-            captionText.innerHTML = '<p style="color:black;font-size:30px;margin:10px;">'+img.alt+'</p>';
+            modalImg.src = this.src;
+            captionText.innerHTML = '<p style="color:black;font-size:30px;margin:10px;">'+this.alt+'</p>';
             
-           
-            
+        }
 
             // Get the <span> element that closes the modal
             var span = modal.querySelectorAll(".close")[0];
@@ -1209,74 +1205,43 @@
         }
 
 
-        // console.log(document.getEle)
-        // $(document).ready(function(){
-        //     $("#graphs").change(function(){
-        //         // console.log("here");
-        //         $(this).find("option:selected").each(function(){
-        //             var optionValue = $(this).attr("value");
-        //             console.log(optionValue)
-        //             if(optionValue!='None')
-        //             {
-        //                 if(optionValue){
-        //                     $(".info").not("#" + optionValue).hide();
-        //                     $("#" + optionValue).show();
-        //                     $('#timeline-box').hide()
-        //                     set_modal(optionValue);
+        console.log(document.getEle)
+        $(document).ready(function(){
+            $("#graphs").change(function(){
+                // console.log("here");
+                $(this).find("option:selected").each(function(){
+                    var optionValue = $(this).attr("value");
+                    console.log(optionValue)
+                    if(optionValue!='None')
+                    {
+                        if(optionValue){
+                            $(".info").not("#" + optionValue).hide();
+                            $("#" + optionValue).show();
+                            $('#timeline-box').hide()
+                            set_modal(optionValue);
                             
-        //                 } else{
-        //                     $(".info").not("#" + optionValue).hide();
-        //                     $('#timeline-box').show()
-        //                 }
-        //             }
-        //             else
-        //             {
-        //                 $(".info").hide();
-        //                 $('#timeline-box').show()
-        //             }
-        //         });
+                        } else{
+                            $(".info").not("#" + optionValue).hide();
+                            $('#timeline-box').show()
+                        }
+                    }
+                    else
+                    {
+                        $(".info").hide();
+                        $('#timeline-box').show()
+                    }
+                });
 
-        //         // <option value="None">None</option>
-        //         //     <option value="GT_canopy_height">Canopy Height</option>
-        //         //     <option value="GT_LAI">Leaf Area </option>
-        //         //     <option value="LWC_info">Leaf Water Content</option>
-        //         //     <option value="yield_info">Yield Info</option>
-                   
-        
-            
-        //     }).change();
-        // });
-
-                $(document).ready(function(){
-
-                $("#Canopy_ht_img").click(function(){
-                    set_modal("GT_canopy_height")
-                })
-                })
-                
-                $(document).ready(function(){
-
-                    $("#lai_img").click(function(){
-                        set_modal("GT_LAI")
-                    })
-                    })
-
-                $(document).ready(function(){
-
-                    $("#lwc_info_img").click(function(){
-                        set_modal("LWC_info")
-                    })
-                    })
-                $(document).ready(function(){
-
-                    $("#yield").click(function(){
-                        set_modal("yield_info")
-                    })
-                    })
             
             
             
             
+            
+            
+            
+            }).change();
+        });
+
 
 
 

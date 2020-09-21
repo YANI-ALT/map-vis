@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=UTF-8 />
+    <!-- <script src="https://threejsfundamentals.org/threejs/resources/threejs/r119/build/three.module.js"></script> -->
+
+    <style>
+        body {
+        margin: 0;
+        }
+        #c {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+        }
+        #info {
+            position: absolute;
+            top: 0px;
+            color:white;
+            width: 100%;
+            padding: 10px;
+            color: #fff;
+            font-family: Monospace;
+            font-size: 13px;
+            line-height: 24px;
+
+            box-sizing: border-box;
+            text-align: center;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1; /* TODO Solve this in HTML */
+        }
+
+        
+    </style>
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+  </head>
+ 
+  <div id="info"> Hyper Spectral Cube </br> Move around to explore
+    <!-- <ul id="nav" style="float:right;margin:10px;padding:10px" >
+      <li><a href= "index.html">Home</a></li>
+   
+      <li><a href="model.html">HyperSpectral Cube</a> </li>
+       <li><a href="brdf.html">BRDF</a> </li>
+      <li><a href= "LWC.html"></br>LWC</a> </li>
+      <li><a href= "LAI_vis_RGB.html">LAI 1</a>  </li>
+      <li><a href= "LAI_plot_view_RGB.html">LAI 2</a> </li>
+      <li><a href= "Plot_info_v2.html">Plot Info</a></li>
+  </ul> -->
+    <p style="color: white;">    <div style="color: black;background: linear-gradient(90deg, rgba(29,29,29,1) 0%, rgba(50,54,213,1) 20%, rgba(42,245,46,1) 40%, rgba(221,26,21,1) 60%, rgba(238,241,46,1) 80%, rgba(255,255,255,1) 100%);width:150px;margin-left:45%;"></br></div>
+      Colour Map : <- Lower (420 nm)  -  Higher (970 nm) -></p>
+
+  </div>
+  
+  <canvas id="c">
+  </canvas>
+    <script src="three.js-master/build/three.min.js"></script>
+    <script src="three.js-master/examples/js/loaders/GLTFLoader.js"></script> 
+    <script src="three/OrbitControls.js"></script>
+    
+    <script>
+  
+function main() {
+  const canvas = document.querySelector('#c');
+  const renderer = new THREE.WebGLRenderer({canvas});
+
+  const fov = 75;
+  const aspect = 2;  // the canvas default
+  const near = 0.1;
+  const far = 5;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.z = 2;
+  camera.position.y= 1;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0x00000 );
+
+  const boxWidth = 0.5;
+  const boxHeight = 1.5;
+  const boxDepth = 1;
+  const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+
+  const cubes = [];  // just an array we can use to rotate the cubes
+  const loader = new THREE.TextureLoader();
+//   console.log(loader.load('img_0.png'));
+    //'https://threejsfundamentals.org/threejs/resources/images/flower-1.jpg'
+  const materials = [
+    new THREE.MeshBasicMaterial({map: loader.load('static/img_0.png')}),//correct
+
+    //right
+    new THREE.MeshBasicMaterial({map: loader.load('static/img_2.png')}),//correct
+    //left
+    new THREE.MeshBasicMaterial({map: loader.load('static/output2_invert.png')}),//correct
+    //tbottom
+    new THREE.MeshBasicMaterial({map: loader.load()}),
+    //top
+    new THREE.MeshBasicMaterial({map: loader.load('static/img_3.png')}),
+    //front(right and left when facing this)
+    new THREE.MeshBasicMaterial({map: loader.load('static/img_1.png')}),
+    //back
+  ];
+  const cube = new THREE.Mesh(geometry, materials);
+  scene.add(cube);
+  cubes.push(cube);  // add to our list of cubes to rotate
+
+  function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+      renderer.setSize(width, height, false);
+    }
+    return needResize;
+  }
+  controls= new THREE.OrbitControls(camera,renderer.domElement)
+
+  function render(time) {
+    time *= 0.001;
+
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    }
+
+    cubes.forEach((cube, ndx) => {
+      const speed = .2 + ndx * .01;
+      const rot = time * speed;
+      // cube.rotation.x = rot;
+      cube.rotation.y = rot;
+    });
+
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+
+main();
+
+ </script>
+  </body>
+</html>

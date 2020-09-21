@@ -1,58 +1,223 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset=UTF-8 />
-    <!-- <script src="https://threejsfundamentals.org/threejs/resources/threejs/r119/build/three.module.js"></script> -->
+<html >
+    <head>
+    <title>Spectral Cube</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <style type="text/css">
+        html, body { overflow: hidden; padding: 0; height: 100%; width: 100%; font-family: 'Open Sans', sans-serif; }
+        body { margin: 10px; background: #fff; }
+        /* h1 { margin: 0; padding: 6px; border:0; font-size: 20pt; }
+        #header { height: 43px; padding: 0; background-color: #eee;}
+        #subheader { height: 12px; text-align: right; font-size: 10px; color: #555;} */
+        /* #map { height: 90%; border: 1px solid #888; }
+         */
+         .mapbox1{width:50%; height: 95%;float:left;margin-left:0px;}
+         .mapbox2{ width:48%; height: 100%;float: right;}
+         #map {  width:98%; height: 100%;margin:10px;border: 5px solid #74a9cf;} 
+         /* #map2{border: 1px solid red;} */
+         /* #map2 { width:40%; height: 40%;margin: 10px;border: 5px solid #74a9cf;float: left;} 
+          #map3 { width:40%; height: 40%;margin: 10px;border: 5px solid #74a9cf; float:left;} 
+         #map4 { width:40%; height: 40%;margin: 10px;border: 5px solid #74a9cf;float:left;} 
+         #map5 { width:40%; height: 40%;margin: 10px;border: 5px solid #74a9cf;float:left;}   */
+         .small-outer{ width:45%; height: 35%;margin: 10px;margin-top:0px;float:left;margin-bottom:20px;}  
+         
+         .small-map{ width:100%; height: 100%;float:left;border: 1px solid #74a9cf;}  
+         .slider-box{ width:40%; height: 25%;margin: 10px;margin-top:0px;border: 5px solid white;float:left;}  
+         .info-text{ width:80%; height: 25%;margin: 10px;float:left; font-family: 'Open Sans', sans-serif;}  
+         .info-text-instr{ width:100%; height: 25%;padding: 20px;float:left; font-family: 'Open Sans', sans-serif;}  
+         #display #dispaly-1
+                {
+                    position:relative; width:90%; height: 100%;margin: 10px;padding-right: 10px;
 
-    <style>
-        body {
-        margin: 0;
+                }
+                
+        #textbox{ width:30%;float:right; margin: 10px}
+        #op-control{
+                width: 20%;
+                margin: 10px;
+            }
+        #reset{
+                border: 4px solid  #74a9cf;
+                background-color: white; 
+                border-radius: 12px;
+                font-family: 'Open Sans', sans-serif;
+
+                }
+            
+        #slider #slider1 #slider2 #slider3{
+                width: 1%px;
+                margin: 10 px;
+                float:left;
+               
+            }
+        #marker {
+                width: 20px;
+                height: 20px;
+                border: 1px solid #088;
+                border-radius: 10px;
+                background-color: #0FF;
+                opacity: 0.5;
+            }
+    
+            
+      .popover-body {
+            min-width: 10px;
+            font-family: 'Open Sans', sans-serif;
         }
+        
+        #logo {
+           width:10%;
+           height:auto;
+           margin:10px;
+          
+        }
+        #content-title
+        {
+            padding:5px;
+            margin:5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 30px;
+            /* border: 1px solid red;  */
+           
+            
+            /* padding:5px; */
+
+        }
+        #content-details
+        {
+            padding:5px;
+            margin:5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            /* border: 1px solid red;  */
+           
+            
+            /* padding:5px; */
+
+        }
+        ul#nav li{
+            display: inline;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
+            padding: 8px;
+            /* float: right; */
+            /* border: 4px solid  #74a9cf; */
+        }
+        ul#nav li a{
+            color:black;
+            font-family: 'Open Sans', sans-serif;
+            text-decoration: none;
+        }
+        ul#nav li a:hover
+        {
+            color:#1d8ddd;
+        }
+        .small-map-title
+        {
+           font-size:15px;
+           /* weight:bold; */
+           margin:0px;
+           font-family: 'Open Sans', sans-serif;
+
+        }
+
+        #logo {
+           width:26%;
+           height:auto;
+           padding:5px;
+          
+        }
+        #leg-img
+        {
+            width:90px;
+            height:auto;
+        }
+        
         #c {
-        width: 100vw;
-        height: 100vh;
+        width: 50vw;
+        height: 80vh;
         display: block;
         }
         #info {
-            position: absolute;
+            position: relative;
             top: 0px;
             color:white;
             width: 100%;
             padding: 10px;
-            color: #fff;
+            background-color: black;
             font-family: Monospace;
             font-size: 13px;
             line-height: 24px;
 
-            box-sizing: border-box;
+            /* /* box-sizing: border-box; */
             text-align: center;
-            -moz-user-select: none;
+            /* -moz-user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
             user-select: none;
             pointer-events: none;
-            z-index: 1; /* TODO Solve this in HTML */
+            z-index: 1; TODO Solve this in HTML */ */
         }
-
-        
     </style>
-    <!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
-  </head>
- 
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css"> -->
+    <!-- script for css modified for north to be visible -->
+    <link rel="stylesheet" href="static/css/ol.css"> 
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
+    <script src="https://unpkg.com/ol-layerswitcher@3.5.0"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ol-layerswitcher@3.5.0/src/ol-layerswitcher.css" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body >
+
+    
+   
+        <div class="mapbox1">
+            
   <div id="info"> Hyper Spectral Cube </br> Move around to explore
-    <p style="color: black;background: linear-gradient(90deg, rgba(29,29,29,1) 0%, rgba(50,54,213,1) 20%, rgba(42,245,46,1) 40%, rgba(221,26,21,1) 60%, rgba(238,241,46,1) 80%, rgba(255,255,255,1) 100%);width:50px;"></br></p>
-    <p style="color: white;">Colour Map : <- Lower (420 nm)  -  Higher (970 nm) -></p>
+    
+    <p style="color: white;">    <div style="color: black;background: linear-gradient(90deg, rgba(29,29,29,1) 0%, rgba(50,54,213,1) 20%, rgba(42,245,46,1) 40%, rgba(221,26,21,1) 60%, rgba(238,241,46,1) 80%, rgba(255,255,255,1) 100%);width:150px;margin-left:40%;"></br></div>
+      Colour Map : <- Lower (420 nm)  -  Higher (970 nm) -></p>
 
   </div>
   
   <canvas id="c">
   </canvas>
-    <script src="three.js-master/build/three.min.js"></script>
-    <script src="three.js-master/examples/js/loaders/GLTFLoader.js"></script> 
-    <script src="three/OrbitControls.js"></script>
+            
+        </div>
+        <div style="float:right;width:48%;margin-right:6px;border-bottom: 1px solid  rgba(185, 188, 190, 0.973);">
+            <img src="static/images/AI_Lab_Logo.PNG" id="logo">
+            <ul id="nav" style="float:right;margin:10px;padding:10px" >
+                <li><a href="index.html">Home</a></li>
+                
+                <li><a href="model.html">HyperSpectral Cube</a> </li>
+                <li><a href="brdf.html">BRDF</a> </li>
+                <li><a href="LWC.html"></br>LWC</a> </li>
+                <li><a href="LAI_plot_view_RGB.html">LAI 1</a>  </li>
+                <li><a href="LAI_vis_RGB.html">LAI 2</a> </li>
+                <li><a href="Plot_info_v2.html">Plot Info</a></li>
+            </ul>
+        </div>
+        <div id="map-matrix" class="mapbox2">
+            <p id="content-title"> Spectral Cube : Hyperspectral Visualisation</p>
+            <p id="content-details">
+                Some text here            
+            </p>
+       
+            
+        </div>
+       
     
-    <script>
-  
+    
+        <script src="three.js-master/build/three.min.js"></script>
+        <script src="three.js-master/examples/js/loaders/GLTFLoader.js"></script> 
+        <script src="three/OrbitControls.js"></script>
+        <script type="text/javascript">
+
 function main() {
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({canvas});
@@ -85,7 +250,7 @@ function main() {
     //left
     new THREE.MeshBasicMaterial({map: loader.load('static/output2_invert.png')}),//correct
     //tbottom
-    new THREE.MeshBasicMaterial({map: loader.load('static/output2.png')}),
+    new THREE.MeshBasicMaterial({map: loader.load()}),
     //top
     new THREE.MeshBasicMaterial({map: loader.load('static/img_3.png')}),
     //front(right and left when facing this)
@@ -134,6 +299,8 @@ function main() {
 
 main();
 
- </script>
-  </body>
+        
+       
+    </script>
+</body>
 </html>

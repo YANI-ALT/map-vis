@@ -375,7 +375,9 @@
             interactions : ol.interaction.defaults({doubleClickZoom :false}),
             layers: [base_lyr,stages],
             view: new ol.View({
-                center: [8727325.249121, 1958618.264098],
+                // center: [8727320.770388873, 1958608.4108873224],
+                center:[ 8727321.367553156,1958614.8304033694],
+                
                 zoom: 20,
             })
         });
@@ -413,7 +415,7 @@
         
 
 
-        var aoi=new ol.Feature(new ol.geom.Circle(center=[8727325.249121, 1958618.264098],opt_radius=5));
+        var aoi=new ol.Feature(new ol.geom.Circle(center=[ 8727321.367553156,1958614.8304033694],opt_radius=5));
         console.log(aoi)
         
         map.addLayer(vectorLayer);
@@ -484,145 +486,9 @@
                 center: [8727325.249121, 1958618.264098],
                 zoom: 24,
             })
-    
-        // var map3 = new ol.Map({
-        //     // controls: ol.control.defaults().extend([mousePositionControl]),
-        //     controls:([]),
-        //     target: 'map3',
-        //     layers: [new ol.layer.Tile({
-        //                     title: 'field',
-        //                     // opacity: 0.7,
-        //                     extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 18,
-        //                         maxZoom: 24,
-        //                         url:  "{{ url_for('static',filename='field/')}}"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 }),new ol.layer.Tile({
-        //                     title: '12dec',
-        //                     visible:true,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],                            source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url:  "{{ url_for('static',filename='12decC/')}}"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })]
-        //                 ,
-        //     view: new ol.View({
-        //         center: [8727325.249121, 1958618.264098],
-        //         zoom: 24,
-        //     })
-        // });
-        // var map4 = new ol.Map({
-        //     // controls: ol.control.defaults().extend([mousePositionControl]),
-        //     controls:([]),
-        //     target: 'map4',
-        //     layers: [new ol.layer.Tile({
-        //                     title: 'field',
-        //                     // opacity: 0.7,
-        //                     extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 18,
-        //                         maxZoom: 24,
-        //                         url:  "{{ url_for('static',filename='field/')}}"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 }),new ol.layer.Tile({
-        //                     title: '19dec',
-        //                     visible:true,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],                            source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url:  "{{ url_for('static',filename='19decC/')}}"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })]
-        //                 ,
-        //     view: view1
-        // });
-        // var map5 = new ol.Map({
-        //     // controls: ol.control.defaults().extend([mousePositionControl]),
-        //     controls:([]),
-        //     target: 'map5',
-        //     layers: [new ol.layer.Tile({
-        //                     title: 'field',
-        //                     // opacity: 0.7,
-        //                     extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 18,
-        //                         maxZoom: 24,
-        //                         url:  "{{ url_for('static',filename='field/')}}"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 }),new ol.layer.Tile({
-        //                     title: '7jan',
-        //                     visible:true,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],                            source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url:  "{{ url_for('static',filename='7janC/')}}"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })]
-        //                 ,
-        //     view: new ol.View({
-        //         center: [8727325.249121, 1958618.264098],
-        //         zoom: 24,
-        //     })
-        // });
-
-        // var map6 = new ol.Map({
-        //     // controls: ol.control.defaults().extend([mousePositionControl]),
-        //     controls:([]),
-        //     target: 'map6',
-        //     layers: [new ol.layer.Tile({
-        //                     title: 'field',
-        //                     // opacity: 0.7,
-        //                     extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 18,
-        //                         maxZoom: 24,
-        //                         url:  "{{ url_for('static',filename='field/')}}"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 }),new ol.layer.Tile({
-        //                     title: '25jan',
-        //                     visible:true,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],                            source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url:  "{{ url_for('static',filename='25janC/')}}"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })]
-        //                 ,
-        //     view: new ol.View({
-        //         center: [8727325.249121, 1958618.264098],
-        //         zoom: 24,
-        //     })
-        // });
-
-
-
-
-
-
-
-
+        map2.setView(new ol.View({center: [ 8727321.367553156,1958614.8304033694],zoom: 22}));
+        vectorSource.addFeature(aoi)//red circle
+        
 
         output_disp=[   "Move slider for observing stages",
         '<h4> <b>Date : </b> 21 November 2018 </h4> <h4> <b>Stage : </b>Tasseling Stage </h4> ',
