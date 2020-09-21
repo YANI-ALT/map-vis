@@ -545,7 +545,7 @@
     <!-- <div id="slider-id"><div class="ui-slider-handle"></div> -->
     <script type="text/javascript">
     //global variable defined here;
-        var treat_vl,treat_flag ;
+        var treat_vl,treat_flag=false ;
         osm=new ol.layer.Tile({
                                 title: 'OpenStreetMap',
                                 type: 'base',
@@ -817,14 +817,8 @@
                  console.log(ui.value);
                  
                 console.log("here is treat_vl :",treat_vl)
-                if(treat_flag)
-                {
-                    treat_vl.setVisible(true);
-                }
-                else
-                {
-                    treat_vl.setVisible(false);
-                }
+                treat_flag=treat_vl.getVisible()
+                
                 index=ui.value
                 list_stages[index].innerHTML="<b class='timeline'>"+list_stages[index].innerHTML+"</b>";
                 if(index!=0)
@@ -838,9 +832,11 @@
                 for (i = 1; i < map.getLayers().array_.length; i++)
                 {
                     console.log(map.getLayers().array_[i])
+                    
                     // map.getLayers().array_[i].getLayers().array_[1].setVisible(false);
                     // map.getLayers().array_[i].getLayers().array_[0].setVisible(false);
                     map.getLayers().array_[i].setVisible(false);
+                    treat_vl.setVisible(treat_flag)
                     // map.getLayers().array_[i].getLayers().array_[0].getSource().changed();
                     if(i==ui.value)
                     {
