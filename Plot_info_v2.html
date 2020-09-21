@@ -25,7 +25,7 @@
     
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style type="text/css">
-        html, body { overflow: hidden; padding: 0; height: 100%; width: 100%; font-family: 'Open Sans', sans-serif; }
+        html, body { overflow: scroll; padding: 0; height: 100%; width: 100%; font-family: 'Open Sans', sans-serif; }
         body { margin: 10px; background: #fff; }
         /* h1 { margin: 0; padding: 6px; border:0; font-size: 20pt; } */
         #header { height: 43px; padding: 0; background-color: #eee; border: 1px solid #888; }
@@ -173,6 +173,7 @@
         }
         #treatment{
                 margin: 5px;
+                /* padding:5px; */
                 /* margin-left: 0px;
                 font-family: 'Open Sans', sans-serif;
                 border: 3px solid  #74a9cf;
@@ -185,8 +186,9 @@
             }
         #treatinfo
        {
-            width:350px;
+            width:62%;
             float:right;
+            margin:5px;
         }
 
 
@@ -215,7 +217,7 @@
                 color:black;
                 border-radius: 12px;
                 float:left;
-                width:15%;
+                width:80px;
                 height:80px;
                 padding:10px;
                 
@@ -335,13 +337,14 @@
             <img src="static/images/AI_Lab_Logo.PNG " id="logo">
             <ul id="nav" style="float:right;margin:10px;padding:10px" >
                 <li><a href= "index.html">Home</a></li>
-             
-                <li><a href="model.html">HyperSpectral Cube</a> </li>
-                <li><a href="brdf.html">BRDF</br></a> </li>
-                <li><a href="LWC.html">LWC</a> </li>
-                <li><a href= "LAI_vis_RGB.html">LAI 1</a>  </li>
-                <li><a href= "LAI_plot_view_RGB.html">LAI 2</a> </li>
+                <li><a href= "tassle.html">Tassle Count</a></li>
                 <li><a href= "Plot_info_v2.html">Plot Info</a></li>
+                <li><a href="LWC.html">LWC</a> </li>
+                <li><a href="brdf.html">BRDF</br></a> </li> 
+                <li><a href="model.html">HyperSpectral Cube</a> </li>               
+                <li><a href= "LAI_vis_RGB.html">LAI 1</a>  </li>
+                <li><a href= "LAI_plot_view_RGB.html">LAI 2</a> </li>             
+                <li><a href= "team.html">Team</a></li>
             </ul>
         </div>
         <div class="textbox">
@@ -364,7 +367,7 @@
                     <td>15th Oct 2018</td>         
                   
                     <td><b>Harvesting Date :</b></td>    
-                    <td>15th Oct 2018</td>           
+                    <td>20th Feb 2019</td>           
                   </tr>
 
                 </tbody>
@@ -400,7 +403,8 @@
                        <!-- <b>Information on treatments for plots</b> -->
                         <!-- </br> -->
                     
-
+                        <!-- 100,200,300 kg/ha -->
+                        <!-- 0.6,0.8,1.2  are the ratio of Irrigation water/ coefficient of pan evaporation. -->
                         <table class="table table-bordered table-sm">
                             <tbody style="font-size:12px;width:50%;">
                                 <tr>
@@ -410,43 +414,63 @@
                               <tr>
                                 <th scope="col">I1</th>
                                 <td style="background-color:red;"></td>
-                                <td>Less Quantitiy of Irrigation</td>
+                                <td>0.6 Irrigation water/ coefficent of pan evaporation Less Quantitiy Water</td>
                               </tr>
                               <tr>
                                 <th scope="col">I2</th>
                                 <td style="background-color:#66ff66;"> </td>
-                                <td>Less Quantitiy of Irrigation</td>         
+                                <td>0.8 Irrigation water/ coefficent of pan evaporation Medium Quantitiy Water</td>         
                               </tr>
                               <tr>
                                 <th scope="col">I3</th>
                                 <td style="background-color:blue;"> </td>  
-                                <td>Less Quantitiy of Irrigation</td>         
+                                <td> 1.2 Irrigation water/ coefficent of pan evaporationHigh Quantitiy Water</td>         
                               </tr>
                               <tr>
                                 <th scope="col">N1</th>
                                 <td style="font-size:20px;">.......</td>    
-                                <td>Less Quantitiy of Irrigation8</td>           
+                                <td> 100kg/ha Less Quantitiy Nitrogen</td>           
                               </tr>
                               <tr>
                                 <th scope="col">N2</th>
                                 <td style="font-size:20px;">- - - -</td>  
-                                <td>Less Quantitiy of Irrigation</td>         
+                                <td> 200kg/ha Medium Quantitiy Nitrogen</td>         
                               </tr>
                               <tr>
                                 <th scope="col">N3</th>
-                                <td style="font-size:20px;">--------</td>    
-                                <td>Less Quantitiy of Irrigation</td>           
+                                <td style="font-size:20px;">______</td>    
+                                <td> 300kg/ha High Quantitiy Nitrogen</td>           
                               </tr>
             
                             </tbody>
                           </table>
                     </div> 
-                    <div style="padding:10px;margin:5px;">
-                        <button type="button" id="Canopy_ht_img" class="btn btn-primary btn-sm info_blck">Canopy Height</button>
-                        <button type="button" id="lai_img" class="btn btn-primary btn-sm info_blck">Leaf Area Index</button>
-                        <button type="button" id="lwc_info_img" class="btn btn-primary btn-sm info_blck">Leaf Water Content </button>
+                    <div style="margin:5px;margin-left:0px;width:30%;float:left;min-width:170px;">
+                       
+                        <!-- <button type="button" id="Canopy_ht_img" class="btn btn-primary btn-sm info_blck">Canopy Height</button> -->
+                        <!-- <button type="button" id="lai_img" class="btn btn-primary btn-sm info_blck">Leaf Area Index</button> -->
+                        <!-- <div class="container"> -->
+                            <div class="row">
+                                <div class="col-sm">
+                                    <button type="button" id="Canopy_ht_img" class="btn btn-primary btn-sm info_blck">Canopy Height</button>
+                                </div>
+                                <div class="col-sm">
+                                    <button type="button" id="lai_img" class="btn btn-primary btn-sm info_blck">Leaf Area Index</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <button type="button" id="lwc_info_img" class="btn btn-primary btn-sm info_blck">Leaf Water Content </button>
+                                </div>
+                                <div class="col-sm">
+                                    <button type="button" id="yield" class="btn btn-primary btn-sm info_blck">Yield Info</button>
+                                </div>
+                            </div>
+                        <!-- </div> -->
+                       
+                        <!-- <button type="button" id="lwc_info_img" class="btn btn-primary btn-sm info_blck">Leaf Water Content </button>
                         <button type="button" id="yield" class="btn btn-primary btn-sm info_blck">Yield Info</button>
-                        
+                        -->
                     </div>
                     <div class="info" id="GT_canopy_height">
                         <!-- <b>GT Canopy Height</b> -->
