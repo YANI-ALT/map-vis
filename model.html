@@ -76,7 +76,8 @@
             padding:5px;
             margin:5px;
             font-family: 'Open Sans', sans-serif;
-            font-size: 30px;
+            font-size: 20px;
+            text-align:center;
             /* border: 1px solid red;  */
            
             
@@ -135,7 +136,7 @@
         
         #c {
         width: 50vw;
-        height: 80vh;
+        height: 95vh;
         display: block;
         }
         #info {
@@ -158,6 +159,12 @@
             pointer-events: none;
             z-index: 1; TODO Solve this in HTML */ */
         }
+        #info_img
+        {
+            width:60%;
+            margin-left:20%;
+            margin-right:20%;
+        }
     </style>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css"> -->
     <!-- script for css modified for north to be visible -->
@@ -179,9 +186,9 @@
         <div class="mapbox1">
             
   <div id="info"> Hyper Spectral Cube </br> Move around to explore
-    
+<!--     
     <p style="color: white;">    <div style="color: black;background: linear-gradient(90deg, rgba(29,29,29,1) 0%, rgba(50,54,213,1) 20%, rgba(42,245,46,1) 40%, rgba(221,26,21,1) 60%, rgba(238,241,46,1) 80%, rgba(255,255,255,1) 100%);width:150px;margin-left:40%;"></br></div>
-      Colour Map : <- Lower (420 nm)  -  Higher (970 nm) -></p>
+      Colour Map : <- Lower (420 nm)  -  Higher (970 nm) -></p> -->
 
   </div>
   
@@ -191,22 +198,22 @@
         </div>
         <div style="float:right;width:48%;margin-right:6px;border-bottom: 1px solid  rgba(185, 188, 190, 0.973);">
             <img src="static/images/AI_Lab_Logo.PNG" id="logo">
-            <ul id="nav" style="float:right;margin:10px;padding:10px" >
-                <li><a href= "index.html">Home</a></li>
-                <li><a href= "tassle.html">Tassle Count</a></li>
-                <li><a href= "Plot_info_v2.html">Plot Info</a></li>
-                <li><a href="LWC.html">LWC</a> </li>
-                <li><a href="brdf.html">BRDF</br></a> </li> 
-                <li><a href="model.html">HyperSpectral Cube</a> </li>               
-                <li><a href= "LAI_vis_RGB.html">LAI 1</a>  </li>
-                <li><a href= "LAI_plot_view_RGB.html">LAI 2</a> </li>             
-                <li><a href= "team.html">Team</a></li>
-            </ul>
+             <ul id="nav" style="float:right;margin:10px;padding:10px" >
+            <li><a href= "index.html">Home</a></li>
+            <li><a href= "tassel.html">Tassel Count</a></li>
+            <li><a href= "Plot_info_v2.html">Plot Info</a></li>
+            <li><a href="LWC.html">LWC</a> </li>
+            <li><a href="brdf.html">BRDF</br></a> </li> 
+            <li><a href="model.html">HyperSpectral Cube</a> </li>               
+            <li><a href= "LAI_vis_RGB.html">LAI 1</a>  </li>
+            <li><a href= "LAI_plot_view_RGB.html">LAI 2</a> </li>             
+            <li><a href= "team.html">Team</a></li>
+        </ul>
         </div>
         <div id="map-matrix" class="mapbox2">
-            <p id="content-title"> Spectral Cube : Hyperspectral Visualisation</p>
+            <p id="content-title">Hyperspectral Cube Visualisation</p>
             <p id="content-details">
-                Some text here            
+                <img src="static/hyperspec/info_img.png" id="info_img">   
             </p>
        
             
