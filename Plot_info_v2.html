@@ -75,7 +75,7 @@
       
             
         .slid{
-                width: 370px;
+                width: 350px;
                 margin: 10px;
                 margin-left:10px;
                 
@@ -84,7 +84,9 @@
             display: inline;
             font-family: 'Open Sans', sans-serif;
             font-size: 10px;
-            padding: 6px;  /*this increases the distamce between the li*/
+            padding: 10px;
+            padding-left:0px;  /*this increases the distamce between the li*/
+           
         }
         ul#ref-line li{
             display: inline;
@@ -380,10 +382,10 @@
             <div id="slider" class="slid"></div> 
             
             
-            <p style="margin-left:2px;font:sans-serif;font-size:10px">|________________|_______________|________________|________________|_______________|</p>
+            <p style="margin-left:2px;font:sans-serif;font-size:10px">|___________________|____________________|__________________|_________________|</p>
 
             <ul id="menu1" >
-                <li>Refrence</li>
+                <!-- <li>Refrence</li> -->
                 <!-- <li>  | </li> -->
                 <li>Early Vegetative</li>
                 <!-- <li> | </li> -->
@@ -409,37 +411,44 @@
                             <tbody style="font-size:12px;width:50%;">
                                 <tr>
                                     <!-- <th scope="row"> </th> -->
-                                    <td style="padding:0px;" colspan="3"><input type="checkbox" id="treatment"> <p style="margin:2px;font-size:15px;">Plot Treatment</p></td>     
-                                  </tr>
+                                    <td style="padding:0px;" colspan="3"><input type="checkbox" id="treatment"> <p style="margin:2px;font-size:15px;">Plot Treatment (Tick the box)</p></td>     
+                                    
+                                </tr>
+                                <tr>
+                                    <!-- <th scope="row"> </th> -->
+                                    <td colspan="3">IW: Irrigation Water, CPE: Cumulative Pan Evaporation</td>     
+                                    
+                                </tr>
+                               
                               <tr>
                                 <th scope="col">I1</th>
                                 <td style="background-color:red;"></td>
-                                <td>0.6 Irrigation water/ coefficent of pan evaporation Less Quantitiy Water</td>
+                                <td>0.6 IW/CPE </td>
                               </tr>
                               <tr>
                                 <th scope="col">I2</th>
                                 <td style="background-color:#66ff66;"> </td>
-                                <td>0.8 Irrigation water/ coefficent of pan evaporation Medium Quantitiy Water</td>         
+                                <td>0.8 IW/CPE</td>         
                               </tr>
                               <tr>
                                 <th scope="col">I3</th>
                                 <td style="background-color:blue;"> </td>  
-                                <td> 1.2 Irrigation water/ coefficent of pan evaporationHigh Quantitiy Water</td>         
+                                <td> 1.2 IW/CPE</td>         
                               </tr>
                               <tr>
                                 <th scope="col">N1</th>
                                 <td style="font-size:20px;">.......</td>    
-                                <td> 100kg/ha Less Quantitiy Nitrogen</td>           
+                                <td> 100 kg/ha at sowing, 6-leaf, and tasseling</td>           
                               </tr>
                               <tr>
                                 <th scope="col">N2</th>
                                 <td style="font-size:20px;">- - - -</td>  
-                                <td> 200kg/ha Medium Quantitiy Nitrogen</td>         
+                                <td> 200 kg/ha at sowing, 6-leaf, and tasseling</td>         
                               </tr>
                               <tr>
                                 <th scope="col">N3</th>
                                 <td style="font-size:20px;">______</td>    
-                                <td> 300kg/ha High Quantitiy Nitrogen</td>           
+                                <td> 300 kg/ha at sowing, 6-leaf, and tasseling</td>           
                               </tr>
             
                             </tbody>
@@ -590,72 +599,7 @@
                         layers: [osm,streets,sat,field ]
                 })
 
-        // var lyr25jan= new ol.layer.Tile({
-        //                     title: '25Jan',
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url: "static/25janC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
-        // var lyr21nov= new ol.layer.Tile({
-        //                     title: '21Nov',
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url: "static/21novC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
-        // var lyr7jan= new ol.layer.Tile({
-        //                     title: '7jan',
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url: "static/7janC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
-        // var lyr12dec=new ol.layer.Tile({
-        //                     title: '12dec',
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.605403, 1958592.869630,8727337.008177, 1958629.869698],                            
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 20,
-        //                         maxZoom: 24,
-        //                         url: "static/12decC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
-        // var lyr19dec=new ol.layer.Tile({
-        //                     title: '19dec',
-        //                     // opacity: 0.7,
-        //                     visible:false,
-        //                     opacity: 0.7,
-        //                     extent: [8727304.328329, 1958591.866426,8727337.310967, 1958630.721182],
-        //                     source: new ol.source.XYZ({
-        //                         attributions: '',
-        //                         minZoom: 18,
-        //                         maxZoom: 24,
-        //                         url: "static/19decC/"+'{z}/{x}/{-y}.png',
-        //                         tileSize: [256, 256]
-        //                     })
-        //                 })
+      
                         
         var field7jan=new ol.layer.Tile({
                             title: 'field 7jan',
@@ -801,7 +745,7 @@
         var y= document.getElementById("menu1");
         var list_stages=y.getElementsByTagName("li");
         console.log(list_stages)
-        text_original=["Refrence","Early Vegetative","Late Vegetative","Tasselling","Silking","Dough"];
+        text_original=["Early Vegetative","Late Vegetative","Tasselling","Silking","Dough"];
         console.log("<b class='timeline'>"+list_stages[0].innerHTML+"</b>")
         list_stages[0].innerHTML="<b class='timeline'>"+text_original[0]+"</b>";
         console.log( list_stages[0].innerHTML)
@@ -809,7 +753,7 @@
 
         $("#slider").slider({
             min: 0,
-            max: 5,
+            max: 4,
             range: "max",
             slide: function (e,ui) 
             {

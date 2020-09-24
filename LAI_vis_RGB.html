@@ -141,6 +141,12 @@
             width:90px;
             height:auto;
         }
+        .slid2{
+        width: 310px;
+        margin: 20px;
+        margin-left: 60px;
+        }
+
         
 
 
@@ -218,7 +224,7 @@
             </ul>  
            
 
-            <div id="slider2" class="slid" ></div>
+            <div id="slider2" class="slid2" ></div>
             
             <!-- <div id="op-control"></div> -->
             <button type="button" id="reset" class="btn btn-success">Reset</button>
@@ -565,7 +571,7 @@
                 console.log(ui.value);
                 console.log("index:",parseInt(ui.value*4/100)+1)
                 console.log("approaching:",ui.value*4/100)
-                approaching=ui.value*5/100
+                approaching=ui.value*5/100;
                 index=parseInt(ui.value*5/100)+1;
                 list_stages[index].innerHTML="<b class='timeline'>"+list_stages[index].innerHTML+"</b>";
                 if(index!=0)
