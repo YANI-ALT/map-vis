@@ -378,7 +378,8 @@
            
               
             <div id="timeline-box" >
-            <div id="display" >Move slider for observing stages</div> 
+            <!-- <div id="display" >Move slider for observing stages</div>  -->
+            <div id="display" ><p> <b>Date : </b> 21 November 2018 </p> <p> <b>Stage : </b>Early Vegetative</p></div> 
             <div id="slider" class="slid"></div> 
             
             
@@ -389,13 +390,13 @@
                 <!-- <li>  | </li> -->
                 <li>Early Vegetative</li>
                 <!-- <li> | </li> -->
-                <li>Late Vegetative</li>
+                <li>&nbsp Late Vegetative &nbsp &nbsp</li>
                 <!-- <li>  | </li> -->
-                <li>Tasselling</li>
+                <li>&nbsp &nbsp Tasselling &nbsp &nbsp</li>
                 <!-- <li> | </li> -->
-                <li>Silking</li>
+                <li>&nbsp &nbsp Silking &nbsp &nbsp</li>
                 <!-- <li> | </li> -->
-                <li>Dough</li>
+                <li>&nbsp &nbsp Dough</li>
             </ul>  
         </div>
        
@@ -583,7 +584,7 @@
           var field=new ol.layer.Tile({
                             title: 'field',
                             // opacity: 0.7,
-                            visible:true,
+                            visible:false,
                             extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
                             source: new ol.source.XYZ({
                                 attributions: '',
@@ -594,11 +595,7 @@
                             })
                         })   
 
-        var base_lyr=new ol.layer.Group({
-                        title: 'Base maps',
-                        layers: [osm,streets,sat,field ]
-                })
-
+       
       
                         
         var field7jan=new ol.layer.Tile({
@@ -659,7 +656,7 @@
         var field21nov=new ol.layer.Tile({
                             title: 'field 21 nov',
                             // opacity: 0.7,
-                            visible:false,
+                            visible:true,
                             extent: [8727275.717354, 1958567.396156,8727370.133370, 1958659.820973],
                             source: new ol.source.XYZ({
                                 attributions: '',
@@ -682,7 +679,7 @@
                 })
         var dec19=new ol.layer.Group({
                     title: 'field19dec',
-                    layers: [field19dec],
+                    layers: [field],
                     
                 })
         var dec12=new ol.layer.Group({
@@ -696,6 +693,11 @@
                     
                 })             
         
+        var base_lyr=new ol.layer.Group({
+                        title: 'Base maps',
+                        // layers: [osm,streets,sat,field ]
+                        layers: [osm,streets,sat,field21nov ]
+                })
 
 
 
@@ -721,7 +723,8 @@
             // controls: ol.control.defaults().extend([mousePositionControl]),
             target: 'map',
             interactions : ol.interaction.defaults({doubleClickZoom :false}),
-            layers: [base_lyr,field21nov,field12dec,field19dec,field7jan,field25jan],
+            // layers: [base_lyr,field21nov,field12dec,field19dec,field7jan,field25jan],
+            layers: [base_lyr,field12dec,field,field7jan,field25jan],
             view: map_mainview,
            
         });
@@ -735,7 +738,7 @@
         // 19th Dec: Tasselling
         // 10th Jan: Silking
         // 25th Jan: Dough 
-        output_disp=[   "Move slider for observing stages",
+        output_disp=[ 
         '<p> <b>Date : </b> 21 November 2018 </p> <p> <b>Stage : </b>Early Vegetative</p> ',
         '<p> <b>Date : </b> 12 December 2018 </p> <p> <b>Stage : </b>Late Vegetative</p> ',
         '<p> <b>Date : </b> 19 December 2018 </p> <p> <b>Stage : </b>Tasselling Stage</p> ',
@@ -745,7 +748,7 @@
         var y= document.getElementById("menu1");
         var list_stages=y.getElementsByTagName("li");
         console.log(list_stages)
-        text_original=["Early Vegetative","Late Vegetative","Tasselling","Silking","Dough"];
+        text_original=["Early Vegetative","&nbsp Late Vegetative &nbsp &nbsp","&nbsp &nbsp Tasselling &nbsp &nbsp ","&nbsp &nbsp Silking &nbsp &nbsp ","&nbsp &nbsp Dough"];
         console.log("<b class='timeline'>"+list_stages[0].innerHTML+"</b>")
         list_stages[0].innerHTML="<b class='timeline'>"+text_original[0]+"</b>";
         console.log( list_stages[0].innerHTML)
